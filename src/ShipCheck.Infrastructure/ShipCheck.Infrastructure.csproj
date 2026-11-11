@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Windows 경계: svn.exe / Build.bat 실행, Job Object, 잠금, 레지스트리, 파일 저장소 -->
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ShipCheck.Infrastructure</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShipCheck.Core\ShipCheck.Core.csproj" />
+  </ItemGroup>
+
+</Project>

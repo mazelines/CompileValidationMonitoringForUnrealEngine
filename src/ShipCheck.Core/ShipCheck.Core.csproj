@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 검증 계약/정책/순서와 순수 로직. 프로세스, WinForms, PowerShell, 레지스트리에 직접 접근하지 않는다. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ShipCheck.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ShipCheck.Core.Tests" />
+  </ItemGroup>
+
+</Project>

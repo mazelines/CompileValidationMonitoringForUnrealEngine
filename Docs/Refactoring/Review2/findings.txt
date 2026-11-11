@@ -1,0 +1,41 @@
+ShipCheck second review - 2026-10-29
+Production source files were not modified.
+ShipCheck.ps1 SHA256: D82CB7C28C75C1EF9EDD9F8CEF7B150B9EE5D9261FF968B3E1273DA4838A91D4
+
+R2-1 P1: A build can certify the wrong source snapshot.
+Locations: ShipCheck.ps1:726, 742, 800.
+The state key is calculated before the project mutex and is not recomputed after waiting or building.
+Repro: start with BROKEN Foo.cpp; pause fake compiler after ShipCheck computes its key; replace Foo.cpp with GOOD; allow build to pass; restore original BROKEN bytes. Next check returns Cached/exit 0. -Force returns Fail/exit 1 for the exact same current source.
+Evidence: race-first.json, race-restored-cached.json, race-restored-forced.json.
+Direction: collect current state after acquiring the project lock; detect changes throughout validation and reject cache publication if the validated state is no longer stable.
+
+R2-2 P1: Source inside an unversioned directory is omitted from both strict policy and cache identity.
+Location: ShipCheck.ps1:383.
+svn status -v emits ? NewFolder rather than its contents. Get-FileKind(NewFolder) is null and the directory is discarded.
+Repro: tracked Foo.cpp changed; unversioned NewFolder/Hidden.cpp exists; UncommittedSourceChanges=Fail nevertheless returns Pass. Change only Hidden.cpp to BROKEN: returns Cached/exit 0; -Force returns Fail/exit 1.
+Evidence: untracked-folder-strict.json, untracked-folder-cached.json, untracked-folder-forced.json.
+Direction: recursively collect source files under unversioned directories, honoring generated-directory exclusions, for omission checks and state identity.
+
+R2-3 P1: Auto-discovery ignores the project's configuration.
+Locations: ShipCheck.ps1:533-546.
+Per-project configuration is selected only when -Project has already populated uproject. Auto-discovery runs after the generic config is loaded and does not reload the named project config.
+Repro: ShipCheck.Game.config.json has UncommittedSourceChanges=Fail, generic config has Warn. The same omitted modified Helper.h causes -Project invocation to Fail/exit 1, but -WorkingCopy invocation without -Project passes/exit 0.
+Evidence: config-explicit-project.json, config-auto.json.
+Direction: resolve the project and then select its config unless ConfigPath was explicitly supplied; preserve explicit-config priority.
+
+R2-4 P2: A non-SVN directory is reported as a valid working copy.
+Locations: ShipCheck.ps1:371-395, Query SvnAvailable assignment.
+svn status on exported/non-working-copy paths can return 0 with warnings on stderr. Invoke-Native discards stderr; an empty but non-null state is treated as available.
+Repro: svn export of fixture; Query returns SvnAvailable=true, WcRoot='', Changes=[], and a nonempty StateKey. GUI's ComputeHealth interprets this as no changes.
+Evidence: non-wc.json.
+Direction: require successful svn info and a nonempty wc-root; unknown source-control state must not mean no changes or eligible for pass caching.
+
+R2-5 P2: Disabling cache hides the failed status in the GUI.
+Locations: MainForm.cs:756-766; ShipCheck.ps1 Query key construction.
+UseCache=false produces an empty StateKey. LatestFailureForCurrentState immediately returns null for an empty key, so an actual failure renders NeedsValidation instead of Failed.
+Repro: invoke the shipped MainForm.ComputeHealth logic with the same failed result and changes. With valid-key it yields Failed; with empty key it yields NeedsValidation.
+Evidence: gui-review/Program.cs; console output captured during review.
+Direction: separate state identity/failure display from permission to reuse the pass cache.
+
+Reproduction: copy only review.ps1 into a new empty temporary directory, then run it with Windows PowerShell. It creates its own SVN repository and fake engine; results.json summarizes outcomes. GUI logic test: dotnet run --project gui-review/Review.csproj.
+No real Unreal Engine build was invoked.

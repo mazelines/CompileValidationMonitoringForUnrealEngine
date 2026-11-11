@@ -1,0 +1,14 @@
+{
+    "UProject": "",
+    "EngineDir": "",
+    "Targets": [
+        { "Name": "", "Platform": "Win64", "Configuration": "Shipping" }
+    ],
+    "ExtraUbtArgs": [],
+    "SingleFileCheck": { "Enabled": true, "IncludeHeaders": true, "MaxFiles": 30 },
+    "SkipEditorOnlyChanges": true,
+    "UncommittedSourceChanges": "Warn",
+    "SkipTag": "[skip-shipcheck]",
+    "UseCache": true,
+    "MaxErrorLines": 25
+}

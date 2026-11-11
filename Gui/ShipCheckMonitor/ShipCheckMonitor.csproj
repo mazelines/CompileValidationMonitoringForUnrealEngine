@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>ShipCheckMonitor</AssemblyName>
+    <RootNamespace>ShipCheckMonitor</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationVisualStyles>true</ApplicationVisualStyles>
+    <ApplicationDefaultFont>Malgun Gothic, 9pt</ApplicationDefaultFont>
+    <Product>ShipCheck Monitor</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ShipCheck.Core\ShipCheck.Core.csproj" />
+    <ProjectReference Include="..\..\src\ShipCheck.Infrastructure\ShipCheck.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

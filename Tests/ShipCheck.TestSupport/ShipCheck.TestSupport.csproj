@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 테스트 공유 fixture: 임시 SVN 저장소/워킹 카피, 모의 엔진, 제품 실행 파일 위치 -->
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ShipCheck.TestSupport</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ShipCheck.Core\ShipCheck.Core.csproj" />
+    <ProjectReference Include="..\..\src\ShipCheck.Infrastructure\ShipCheck.Infrastructure.csproj" />
+    <!-- 빌드 순서만 보장 (실행 파일은 각자의 출력 폴더에서 실행한다) -->
+    <ProjectReference Include="..\ShipCheck.FakeBuild\ShipCheck.FakeBuild.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\src\ShipCheck.Cli\ShipCheck.Cli.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

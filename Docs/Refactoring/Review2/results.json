@@ -1,0 +1,62 @@
+﻿[
+    {
+        "Case":  "untracked-folder-strict",
+        "Exit":  0,
+        "Result":  "Pass",
+        "Reason":  "",
+        "StateKey":  "e4c4ae7757a8be42ff4e3fcea3bee3a03ed1d33b"
+    },
+    {
+        "Case":  "untracked-folder-cached",
+        "Exit":  0,
+        "Result":  "Cached",
+        "Reason":  "같은 워킹 카피 상태로 이미 통과",
+        "StateKey":  "e4c4ae7757a8be42ff4e3fcea3bee3a03ed1d33b"
+    },
+    {
+        "Case":  "untracked-folder-forced",
+        "Exit":  1,
+        "Result":  "Fail",
+        "Reason":  "Game Win64 Shipping",
+        "StateKey":  "e4c4ae7757a8be42ff4e3fcea3bee3a03ed1d33b"
+    },
+    {
+        "Case":  "race-first",
+        "Exit":  null,
+        "Result":  "Pass",
+        "StateKey":  "32699e1604c4c26aab8672fe14fb0e1952b69baa"
+    },
+    {
+        "Case":  "race-restored-cached",
+        "Exit":  0,
+        "Result":  "Cached",
+        "Reason":  "같은 워킹 카피 상태로 이미 통과",
+        "StateKey":  "32699e1604c4c26aab8672fe14fb0e1952b69baa"
+    },
+    {
+        "Case":  "race-restored-forced",
+        "Exit":  1,
+        "Result":  "Fail",
+        "Reason":  "Game Win64 Shipping",
+        "StateKey":  "32699e1604c4c26aab8672fe14fb0e1952b69baa"
+    },
+    {
+        "Case":  "config-explicit-project",
+        "Exit":  1,
+        "Result":  "Fail",
+        "Reason":  "커밋에 포함되지 않은 로컬 코드 변경 1개",
+        "StateKey":  ""
+    },
+    {
+        "Case":  "config-auto",
+        "Exit":  0,
+        "Result":  "Pass"
+    },
+    {
+        "Case":  "non-wc-query",
+        "SvnAvailable":  true,
+        "WcRoot":  "",
+        "Changes":  0,
+        "StateKey":  "e4872ceb6d6917c8cdce565388f2be48e2d85b52"
+    }
+]

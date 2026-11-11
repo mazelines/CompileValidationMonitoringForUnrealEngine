@@ -1,0 +1,31 @@
+# .NET build and publish output
+[Bb]in/
+[Oo]bj/
+/dist/
+/artifacts/
+
+# IDE and per-user files
+.vs/
+.idea/
+*.user
+*.suo
+*.sln.docstates
+
+# Test output and runtime state
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.log
+Saved/
+
+# Machine-specific project configuration (keep the shared default config)
+/ShipCheck.*.config.json
+.env
+.env.*
+!.env.example
+
+# OS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 테스트 전용 모의 UBT. 가짜 엔진의 Build.bat 이 이 프로그램을 실행한다. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ShipCheck.FakeBuild</RootNamespace>
+  </PropertyGroup>
+
+</Project>

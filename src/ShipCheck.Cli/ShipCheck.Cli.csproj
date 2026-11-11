@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 명령줄 / TortoiseSVN 훅 진입점. 정책과 판정은 Core 에 위임한다. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>ShipCheck</AssemblyName>
+    <RootNamespace>ShipCheck.Cli</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShipCheck.Core\ShipCheck.Core.csproj" />
+    <ProjectReference Include="..\ShipCheck.Infrastructure\ShipCheck.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ShipCheck.Core.Tests" />
+  </ItemGroup>
+
+</Project>
